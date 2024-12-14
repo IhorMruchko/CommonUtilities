@@ -48,7 +48,7 @@ namespace CommonUtilities.Connection.Databases
         public TEntity SelectOrDefault(Func<TEntity, bool> selector, TEntity defaultValue = default)
         {
             var result = _source.FirstOrDefault(selector);
-            return result is null ? defaultValue : result;
+            return result == null ? defaultValue : result;
         }
 
         public bool Remove(TEntity element) 
