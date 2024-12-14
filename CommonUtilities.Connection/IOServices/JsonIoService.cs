@@ -42,6 +42,6 @@ namespace CommonUtilities.Connection.IOServices
             => JsonConvert.DeserializeObject<TDataStructure>(File.ReadAllText(FilePath), _setting);
 
         public override void Save(TDataStructure data) 
-            => JsonConvert.SerializeObject(data, _setting);
+            => File.WriteAllText(FilePath, JsonConvert.SerializeObject(data, _setting));
     }
 }

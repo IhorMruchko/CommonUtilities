@@ -60,7 +60,7 @@ namespace CommonUtilities.Connection.IOServices
             try
             {
                 data = Read();
-                return true;
+                return data != null;
             }
             catch (Exception)
             {
