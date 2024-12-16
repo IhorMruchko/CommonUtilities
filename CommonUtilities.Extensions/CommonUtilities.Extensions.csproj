@@ -2,6 +2,29 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageOutputPath>../../Nugets/CommonUtilities/Extensions</PackageOutputPath>
+        <PackageId>DotNetUtilities.Extensions</PackageId>
+        <Version>0.0.1</Version>
+        <Title>DotNetUtilities.Extensions</Title>
+        <Authors>Ihor Mruchko</Authors>
+        <Description>Provides Extension utilities for different built in types.</Description>
+        <Copyright>Copyright (c) Ihor Mruchko 2024</Copyright>
+        <PackageProjectUrl>https://github.com/IhorMruchko/CommonUtilities</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/IhorMruchko/CommonUtilities</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>Extensions, Default Types</PackageTags>
+        <PackageReleaseNotes>1. Console requests.
+        2. String saving clipboard and browser openning.</PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageIcon>CommonUtilites-ExtensionIcon.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
+    <ItemGroup>
+        <None Include="../Resources/CommonUtilites-ExtensionIcon.png" Pack="true" PackagePath=""/>
+        <None Include="../README.md" Pack="true" PackagePath=""/>
+    </ItemGroup>
+    
 </Project>

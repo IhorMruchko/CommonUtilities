@@ -9,3 +9,17 @@
 
 * IIoService
 * JsonIoService
+
+## Extensions
+
+* String Extensions:
+  * OpenInBrowser
+  * SaveToClipboard
+  * In
+* Console Extensions:
+  * AsConsoleKeyInfoRequest
+  * AsConfirmationConsoleRequest
+  * AsLineConsoleRequest
+  * AsMultiLineConsoleRequest
+  * AsIntConsoleRequest
+  * AsIndexConsoleRequest
