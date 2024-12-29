@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <RootNamespace>CommonUtilities.Conversion</RootNamespace>
+        <PackageOutputPath>../../Nugets/CommonUtilities/Conversion</PackageOutputPath>
+        <PackageId>DotNetUtilities.Conversion</PackageId>
+        <Version>0.0.2</Version>
+        <Title>DotNetUtilities.Conversion</Title>
+        <Authors>Ihor Mruchko</Authors>
+        <Description>Provides Utilities to convert built-in classes from string command-line.</Description>
+        <Copyright>Copyright (c) Ihor Mruchko 2024</Copyright>
+        <PackageProjectUrl>https://github.com/IhorMruchko/CommonUtilities</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/IhorMruchko/CommonUtilities</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>Conversion, Built-in types, Reflecsion, Auto-Update</PackageTags>
+        <PackageReleaseNotes>1. For build in types (char, byte, bool, int, float, double, decimal etc) created converters. 
+2. Added functionality to extend this converters if needed for custom types.
+</PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageIcon>Conversion.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
+    
+
+    <ItemGroup>
+      <PackageReference Include="DotNetUtilities.Extensions" Version="0.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../Resources/Conversion.png" Pack="true" PackagePath=""/>
+        <None Include="../README.md" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+</Project>

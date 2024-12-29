@@ -16,7 +16,7 @@
         <RepositoryType>git</RepositoryType>
         <PackageTags>Extensions, Default Types</PackageTags>
         <PackageReleaseNotes>1. Console requests.
-        2. String saving clipboard and browser openning.</PackageReleaseNotes>
+2. String saving clipboard and browser openning.</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageIcon>CommonUtilites-ExtensionIcon.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>
