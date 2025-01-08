@@ -7,6 +7,8 @@ namespace CommonUtilities.Console.Attributes
     public abstract class ParameterAttribute : Attribute
     {
         public abstract bool Validate(ParameterInfo parameter,  string value);
+        
+        public virtual object Convert(object value) => value;
     }
 
     public class OptionalAttribute : ParameterAttribute
@@ -36,5 +38,10 @@ namespace CommonUtilities.Console.Attributes
 
             return parameter.ParameterType == typeof(char) && value.Equals($"-{Symbol?.ToString() ?? parameter.Name}");
         }
+        
+        public override object Convert(object value) 
+            => value is string str 
+            ? str.TrimStart('-') 
+            : value;
     }
 }

@@ -4,7 +4,6 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <PackageOutputPath>../../Nugets/CommonUtilities.Console</PackageOutputPath>
         <PackageId>DotNetUtilities.Console</PackageId>
-        <Version>0.0.1</Version>
         <Title>DotNetUtilities.Console</Title>
         <Authors>Ihor Mruchko</Authors>
         <Description>Provides attributes to delegate user CLI command to static method</Description>
@@ -14,9 +13,10 @@
         <RepositoryUrl>https://github.com/IhorMruchko/CommonUtilities</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>Attributes, Console, User Input, Request, Delegate</PackageTags>
-        <PackageReleaseNotes>1. Created attributes for Command and Overload.
-2. Created Parameter attributes for validation: Optional
-3. Craeted Command manager to handle user requests</PackageReleaseNotes>
+        <PackageReleaseNotes>1. Fixed Error with zero arguments request.
+2. Added possibility to convert value to specific format from the attribute, without converter.
+        </PackageReleaseNotes>
+        <PackageVersion>0.0.2-alpha</PackageVersion>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageIcon>terminal.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>
