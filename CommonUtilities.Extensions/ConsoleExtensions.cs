@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CommonUtilities.Extensions
@@ -13,7 +15,7 @@ namespace CommonUtilities.Extensions
         /// </summary>
         /// <param name="message">Request message</param>
         /// <returns>User input as consoleKeyInfo</returns>
-        public static ConsoleKeyInfo AsConsoleKeyInfoRequest(this string message)
+        public static ConsoleKeyInfo AsKeyInfoConsoleRequest(this string message)
         {
             Console.Write(message);
           
@@ -34,7 +36,7 @@ namespace CommonUtilities.Extensions
             this string message, 
             ConsoleKey confirmationState = ConsoleKey.Y) 
         {
-            return message.AsConsoleKeyInfoRequest().Key == confirmationState;
+            return message.AsKeyInfoConsoleRequest().Key == confirmationState;
         }
 
         /// <summary>
@@ -90,7 +92,31 @@ namespace CommonUtilities.Extensions
         public static bool AsIndexConsoleRequest(this string message, int maxLenght, out int index)
         {
             index = message.AsIntConsoleRequest() - 1;
-            return index < 0 || index >= maxLenght;
+            return index >= 0 || index < maxLenght;
+        }
+
+        /// <summary>
+        /// Returns weather input index was valid one.
+        /// </summary>
+        /// <param name="source">Elements to display.</param>
+        /// <param name="index">Index user selected</param>
+        /// <param name="selector">Selects how item should be displayed</param>
+        /// <typeparam name="TItem">Type of the collection that is displayed.</typeparam>
+        /// <returns>True - if user provides right value between 0 and <paramref name="source"/> length.
+        /// <para/>False - otherwise.</returns>
+        public static bool AsIndexConsoleRequest<TItem>(
+            this IEnumerable<TItem> source, 
+            out int index,
+            Func<TItem, string> selector = null)
+        {
+            source = source.ToArray();
+            index = string.Join(
+                    "\n", 
+                    source.Select((item, i) => $"{i + 1}. {selector?.Invoke(item) ?? item.ToString()}")
+                )
+                .AsIntConsoleRequest() - 1;
+            
+            return index >= 0 && index < source.Count();
         }
     }
 }

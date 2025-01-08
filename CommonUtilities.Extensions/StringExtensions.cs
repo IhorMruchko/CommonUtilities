@@ -5,6 +5,9 @@ using System.Runtime.InteropServices;
 
 namespace CommonUtilities.Extensions
 {
+    /// <summary>
+    /// Provides string extensions.
+    /// </summary>
     public static class StringExtensions
     {
         /// <summary>
@@ -54,7 +57,7 @@ namespace CommonUtilities.Extensions
             
             if (processStartInfo.FileName == string.Empty || processStartInfo.Arguments == string.Empty) return;
             
-            var process = new Process()
+            var process = new Process
             {
                 StartInfo = processStartInfo
             };
