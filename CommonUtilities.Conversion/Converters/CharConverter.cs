@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
-using System.Net.Http.Headers;
-using CommonUtilities.Extensions;
+using CommonUtilities.Conversion.Base;
 
 namespace CommonUtilities.Conversion
 {
