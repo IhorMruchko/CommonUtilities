@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommonUtilities.Conversion.Converters;
 using CommonUtilities.Conversion.NumericConverters;
 
 namespace CommonUtilities.Conversion.Base
@@ -16,26 +17,11 @@ namespace CommonUtilities.Conversion.Base
         {
             Converters = AppDomain.CurrentDomain
                 .GetAssemblies()
-                .Where(assembly => assembly.GetName() != typeof(ConversionManager).Assembly.GetName())
                 .SelectMany(assembly => assembly.GetTypes())
                 .Where(type => type.GetInterface(nameof(IConverter)) != null 
-                            && type.GetConstructor(Array.Empty<Type>()) != null)
+                            && (type.GetConstructor(Array.Empty<Type>()) != null
+                            ||  type.IsValueType))
                 .Select(type => (IConverter)Activator.CreateInstance(type))
-                .OrderBy(converter => converter.Priority)
-                .Append(new FloatConverter())
-                .Append(new DecimalConverter())
-                .Append(new DoubleConverter())
-                .Append(new ByteConverter())
-                .Append(new SByteConverter())
-                .Append(new IntegerConverter())
-                .Append(new UIntConverter())
-                .Append(new ShortConverter())
-                .Append(new UShortConverter())
-                .Append(new LongConverter())
-                .Append(new ULongConverter())
-                .Append(new BooleanConverter())
-                .Append(new CharConverter())
-                .Append(new StringConverter())
                 .ToList();
         }
 

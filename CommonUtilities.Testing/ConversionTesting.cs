@@ -1,4 +1,3 @@
-using CommonUtilities.Conversion;
 using CommonUtilities.Conversion.Base;
 
 namespace CommonUtilities.Testing;
@@ -27,6 +26,11 @@ public class ConversionTesting
     [TestCase(typeof(int), "0", 0)]
     [TestCase(typeof(int), "-10", -10)]
     [TestCase(typeof(int), "-2147483648", int.MinValue)]
+    
+    [TestCase(typeof(uint), "4294967295ui", uint.MaxValue)]
+    [TestCase(typeof(uint), "2147483647ui", 2147483647)]
+    [TestCase(typeof(uint), "10ui", 10)]
+    [TestCase(typeof(uint), "0ui", uint.MinValue)]
     
     [TestCase(typeof(sbyte), "127sb", 127)]
     [TestCase(typeof(sbyte), "10sb", 10)]
@@ -82,6 +86,33 @@ public class ConversionTesting
     [TestCase(typeof(DayOfWeek), "Friday", DayOfWeek.Friday)]
     [TestCase(typeof(DayOfWeek), "Saturday", DayOfWeek.Saturday)]
     [TestCase(typeof(DayOfWeek), "Sunday", DayOfWeek.Sunday)]
+    [TestCase(typeof(DayOfWeek), "monDay", DayOfWeek.Monday)]
+    [TestCase(typeof(DayOfWeek), "tuesDay", DayOfWeek.Tuesday)]
+    [TestCase(typeof(DayOfWeek), "wednesDay", DayOfWeek.Wednesday)]
+    [TestCase(typeof(DayOfWeek), "thursDay", DayOfWeek.Thursday)]
+    [TestCase(typeof(DayOfWeek), "friDay", DayOfWeek.Friday)]
+    [TestCase(typeof(DayOfWeek), "saturDay", DayOfWeek.Saturday)]
+    [TestCase(typeof(DayOfWeek), "sunday", DayOfWeek.Sunday)]
+    
+    [TestCase(typeof(ConsoleColor), "Black", ConsoleColor.Black)]
+    [TestCase(typeof(ConsoleColor), "black", ConsoleColor.Black)]
+    [TestCase(typeof(ConsoleColor), "DarkBlue", ConsoleColor.DarkBlue)]
+    [TestCase(typeof(ConsoleColor), "darkblue", ConsoleColor.DarkBlue)]
+    [TestCase(typeof(ConsoleColor), "DarkGreen", ConsoleColor.DarkGreen)]
+    [TestCase(typeof(ConsoleColor), "darkgrEeN", ConsoleColor.DarkGreen)]
+    [TestCase(typeof(ConsoleColor), "DarkCyan", ConsoleColor.DarkCyan)]
+    [TestCase(typeof(ConsoleColor), "DarkRed", ConsoleColor.DarkRed)]
+    [TestCase(typeof(ConsoleColor), "DarkMagenta", ConsoleColor.DarkMagenta)]
+    [TestCase(typeof(ConsoleColor), "DarkYellow", ConsoleColor.DarkYellow)]
+    [TestCase(typeof(ConsoleColor), "DarkGray", ConsoleColor.DarkGray)]
+    [TestCase(typeof(ConsoleColor), "Gray", ConsoleColor.Gray)]
+    [TestCase(typeof(ConsoleColor), "Blue", ConsoleColor.Blue)]
+    [TestCase(typeof(ConsoleColor), "Green", ConsoleColor.Green)]
+    [TestCase(typeof(ConsoleColor), "Cyan", ConsoleColor.Cyan)]
+    [TestCase(typeof(ConsoleColor), "Red", ConsoleColor.Red)]
+    [TestCase(typeof(ConsoleColor), "Magenta", ConsoleColor.Magenta)]
+    [TestCase(typeof(ConsoleColor), "Yellow", ConsoleColor.Yellow)]
+    [TestCase(typeof(ConsoleColor), "White", ConsoleColor.White)]
     public void GenericConversion_Success(Type from, string value, object expectedResult)
     {
         Assert.Multiple(() =>
@@ -111,6 +142,9 @@ public class ConversionTesting
     [TestCase(typeof(int), "10f")]
     [TestCase(typeof(int), "1,1")]
     [TestCase(typeof(int), "-1,1")]
+    
+    [TestCase(typeof(uint), "4294967296ui")]
+    [TestCase(typeof(uint), "-1ui")]
     
     [TestCase(typeof(sbyte), "128sb")]
     [TestCase(typeof(sbyte), "10,1d")]
@@ -188,7 +222,7 @@ public class ConversionTesting
     [TestCase(typeof(DayOfWeek), "10,3")]
     [TestCase(typeof(DayOfWeek), "10")]
     [TestCase(typeof(DayOfWeek), "-10")]
-    [TestCase(typeof(DayOfWeek), "monday")]
+    [TestCase(typeof(DayOfWeek), "M0nday")]
     public void GenericConversion_Failure(Type from, string value)
     {
         Assert.Multiple(() =>

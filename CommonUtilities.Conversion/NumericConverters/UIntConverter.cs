@@ -3,18 +3,19 @@ using CommonUtilities.Conversion.Base;
 
 namespace CommonUtilities.Conversion.NumericConverters
 {
+    /// <inheritdoc />
     public struct UIntConverter : IConverter
     {
-        public uint Priority { get; }
-        public Type TargetType { get; }
-        public bool CanConvert(string value)
-        {
-            throw new NotImplementedException();
-        }
+        /// <inheritdoc />
+        public Type TargetType => typeof(uint);
 
+        /// <inheritdoc />
+        public bool CanConvert(string value) 
+            => value.EndsWith("ui") 
+            && uint.TryParse(value.TrimEnd('i').TrimEnd('u'), out _);
+
+        /// <inheritdoc />
         public object Convert(string value)
-        {
-            throw new NotImplementedException();
-        }
+            => uint.Parse(value.TrimEnd('i').TrimEnd('u'));
     }
 }

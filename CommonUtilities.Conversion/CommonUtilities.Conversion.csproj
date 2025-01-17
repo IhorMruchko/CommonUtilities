@@ -15,7 +15,7 @@
         <RepositoryUrl>https://github.com/IhorMruchko/CommonUtilities</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>Conversion, Built-in types, Reflecsion, Auto-Update</PackageTags>
-        <PackageReleaseNotes>Fiexed issue with dobule and float types</PackageReleaseNotes>
+        <PackageReleaseNotes>Added enum types conversions, added test, configured all built-ins</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageIcon>Conversion.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>

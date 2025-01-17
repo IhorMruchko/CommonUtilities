@@ -3,18 +3,19 @@ using CommonUtilities.Conversion.Base;
 
 namespace CommonUtilities.Conversion.NumericConverters
 {
+    /// <inheritdoc />
     public struct ShortConverter : IConverter
     {
-        public uint Priority { get; }
-        public Type TargetType { get; }
-        public bool CanConvert(string value)
-        {
-            throw new NotImplementedException();
-        }
+        /// <inheritdoc />
+        public Type TargetType => typeof(short);
 
-        public object Convert(string value)
-        {
-            throw new NotImplementedException();
-        }
+        /// <inheritdoc />
+        public bool CanConvert(string value) 
+            => value.EndsWith("s")
+            && short.TryParse(value.TrimEnd('s'), out _);
+
+        /// <inheritdoc />
+        public object Convert(string value) 
+            => short.Parse(value.TrimEnd('s'));
     }
 }

@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using CommonUtilities.Conversion.Base;
 
-namespace CommonUtilities.Conversion
+namespace CommonUtilities.Conversion.Converters
 {
     /// <inheritdoc />
     public struct BooleanConverter : IConverter
@@ -16,9 +16,6 @@ namespace CommonUtilities.Conversion
         /// Literals that represents 'true' value. 
         /// </summary>
         private static readonly string[] TrueLiterals = { "true", "yes", "1" };
-
-        /// <inheritdoc />
-        public uint Priority => 0;
 
         /// <inheritdoc />
         public Type TargetType => typeof(bool);

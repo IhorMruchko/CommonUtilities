@@ -7,9 +7,6 @@ namespace CommonUtilities.Conversion.NumericConverters
     public struct IntegerConverter : IConverter
     {
         /// <inheritdoc />
-        public uint Priority => 0;
-
-        /// <inheritdoc />
         public Type TargetType => typeof(int);
 
         /// <inheritdoc />

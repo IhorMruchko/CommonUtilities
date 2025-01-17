@@ -8,9 +8,6 @@ namespace CommonUtilities.Conversion.NumericConverters
     public struct DecimalConverter : IConverter
     {
         /// <inheritdoc />
-        public uint Priority => 0;
-
-        /// <inheritdoc />
         public Type TargetType => typeof(decimal);
 
         /// <inheritdoc />

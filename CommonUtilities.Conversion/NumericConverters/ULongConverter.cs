@@ -3,18 +3,20 @@ using CommonUtilities.Conversion.Base;
 
 namespace CommonUtilities.Conversion.NumericConverters
 {
+    /// <inheritdoc />
     public struct ULongConverter : IConverter
     {
-        public uint Priority { get; }
-        public Type TargetType { get; }
-        public bool CanConvert(string value)
-        {
-            throw new NotImplementedException();
-        }
+        /// <inheritdoc />
+        public Type TargetType => typeof(ulong);
 
-        public object Convert(string value)
-        {
-            throw new NotImplementedException();
-        }
+        
+        /// <inheritdoc />
+        public bool CanConvert(string value) 
+            => value.EndsWith("ul")
+            && ulong.TryParse(value.TrimEnd('l').TrimEnd('u'), out _);
+
+        /// <inheritdoc />
+        public object Convert(string value) 
+            => ulong.Parse(value.TrimEnd('l').TrimEnd('u'));
     }
 }

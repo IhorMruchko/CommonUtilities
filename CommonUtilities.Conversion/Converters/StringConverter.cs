@@ -1,14 +1,11 @@
 using System;
 using CommonUtilities.Conversion.Base;
 
-namespace CommonUtilities.Conversion
+namespace CommonUtilities.Conversion.Converters
 {
     /// <inheritdoc />
     public struct StringConverter : IConverter
     {
-        /// <inheritdoc />
-        public uint Priority => 0;
-
         /// <inheritdoc />
         public Type TargetType => typeof(string);
 

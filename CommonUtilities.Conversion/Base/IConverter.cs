@@ -8,11 +8,6 @@ namespace CommonUtilities.Conversion.Base
     public interface IConverter
     {
         /// <summary>
-        /// Priority defines place in the handling chain.
-        /// </summary>
-        uint Priority { get; }
-        
-        /// <summary>
         /// Target conversion type. 
         /// </summary>
         Type TargetType { get; }

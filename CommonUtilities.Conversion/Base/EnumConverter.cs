@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace CommonUtilities.Conversion.Base
 {
@@ -10,9 +11,6 @@ namespace CommonUtilities.Conversion.Base
         where TEnum : Enum
     {
         /// <inheritdoc />
-        public abstract uint Priority { get; }
-
-        /// <inheritdoc />
         public Type TargetType => typeof(TEnum);
 
         /// <inheritdoc />
@@ -20,7 +18,7 @@ namespace CommonUtilities.Conversion.Base
         {
             try
             {
-                return Enum.GetName(TargetType, Enum.Parse(TargetType, value)) != null;
+                return Enum.GetNames(TargetType).Select(name => name.ToLower()).Contains(value.ToLower());
             }
             catch (Exception)
             {
@@ -29,6 +27,6 @@ namespace CommonUtilities.Conversion.Base
         }
 
         /// <inheritdoc />
-        public object Convert(string value) => Enum.Parse(TargetType, value);
+        public object Convert(string value) => Enum.Parse(TargetType, value, true);
     }
 }

@@ -8,9 +8,6 @@ namespace CommonUtilities.Conversion.NumericConverters
     public struct DoubleConverter : IConverter
     {
         /// <inheritdoc />
-        public uint Priority => 0;
-
-        /// <inheritdoc />
         public Type TargetType => typeof(double);
 
         /// <inheritdoc />
