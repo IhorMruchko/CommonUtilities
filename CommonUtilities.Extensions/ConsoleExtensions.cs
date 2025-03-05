@@ -21,7 +21,10 @@ namespace CommonUtilities.Extensions
           
             var response = Console.ReadKey();
           
-            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.CursorLeft = 0;
+            Console.Write(' '.Repeat(Console.WindowWidth));
+            Console.CursorLeft = 0;
+            
             
             return response;
         }
@@ -50,7 +53,9 @@ namespace CommonUtilities.Extensions
             
             var result = Console.ReadLine();
             
-            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
             
             return result;
         }

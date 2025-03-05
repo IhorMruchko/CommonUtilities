@@ -6,16 +6,16 @@ namespace CommonUtilities.Console.Attributes
     [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = true)]
     public abstract class ParameterAttribute : Attribute
     {
-        public abstract bool Validate(ParameterInfo parameter,  string value);
+        public virtual bool Validate(ParameterInfo parameter,  string value) => true;
         
         public virtual object Convert(object value) => value;
     }
 
     public class OptionalAttribute : ParameterAttribute
     {
-        protected string Name { get; }
+        public string Name { get; }
         
-        protected char? Symbol { get; }
+        public char? Symbol { get; }
 
         public OptionalAttribute() { }
         
@@ -28,20 +28,5 @@ namespace CommonUtilities.Console.Attributes
         {
             Symbol = name;    
         }
-        
-        public override bool Validate(ParameterInfo parameter, string value)
-        {
-            if (parameter.ParameterType == typeof(string))
-            {
-                return value.Equals($"--{Name ?? parameter.Name}");
-            }
-
-            return parameter.ParameterType == typeof(char) && value.Equals($"-{Symbol?.ToString() ?? parameter.Name}");
-        }
-        
-        public override object Convert(object value) 
-            => value is string str 
-            ? str.TrimStart('-') 
-            : value;
     }
 }

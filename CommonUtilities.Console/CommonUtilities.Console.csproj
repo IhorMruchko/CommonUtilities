@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <PackageOutputPath>../../Nugets/CommonUtilities.Console</PackageOutputPath>
+        <PackageOutputPath>../../Nugets/CommonUtilities/Console</PackageOutputPath>
         <PackageId>DotNetUtilities.Console</PackageId>
         <Title>DotNetUtilities.Console</Title>
         <Authors>Ihor Mruchko</Authors>
@@ -16,18 +16,22 @@
         <PackageReleaseNotes>1. Fixed Error with zero arguments request.
 2. Added possibility to convert value to specific format from the attribute, without converter.
         </PackageReleaseNotes>
-        <PackageVersion>0.0.3-alpha</PackageVersion>
+        <PackageVersion>0.0.4.8-alpha</PackageVersion>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageIcon>terminal.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="DotNetUtilities.Conversion" Version="0.0.3" />
+      <PackageReference Include="DotNetUtilities.Conversion" Version="0.1.0" />
     </ItemGroup>
 
     <ItemGroup>
         <None Include="../README.md" Pack="true" PackagePath=""/>
         <None Include="../Resources/terminal.png" Pack="true" PackagePath=""/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <InternalsVisibleTo Include="CommonUtilities.Testing"/>
     </ItemGroup>
 </Project>
