@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using CommonUtilities.Console.Entities;
+using CommonUtilities.Console.Entities.ArgumentBagParsingStates;
 using CommonUtilities.Console.Extensions;
 
 namespace CommonUtilities.Console
@@ -27,11 +28,18 @@ namespace CommonUtilities.Console
         /// <returns>Response from the handler.</returns>
         public static string Execute(string[] arguments)
         {
+            var argumentBag = new ArgumentBag(arguments);
+            
+            if (argumentBag.ParsingState is ErrorParsingState errorParsingState)
+            {
+                return errorParsingState.ErrorMessage;
+            }
+            
             foreach (var command in Commands)
             {
-                if (command.CanExecute(arguments))
+                if (command.CanExecute(argumentBag))
                 {
-                    return command.Execute(arguments);
+                    return command.Execute(argumentBag);
                 }
             }
 

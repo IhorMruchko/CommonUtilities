@@ -2,7 +2,7 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageOutputPath>../../Nugets/CommonUtilities</PackageOutputPath>
+        <PackageOutputPath>../../Nugets/CommonUtilities/Connection</PackageOutputPath>
         <PackageId>DotNetUtilities.Connection</PackageId>
         <Version>0.0.3</Version>
         <Title>DotNetUtilities.Connection</Title>
