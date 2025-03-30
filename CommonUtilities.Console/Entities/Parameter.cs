@@ -8,5 +8,7 @@ namespace CommonUtilities.Console.Entities
         public ParameterInfo ParameterReference { get; set; }
         
         public ParameterAttribute[] Attributes { get; set; }
+        
+        public HelpAttribute Help { get; set; }
     }
 }

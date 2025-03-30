@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <PackageOutputPath>../../Nugets/CommonUtilities/FluentApi</PackageOutputPath>
+        <PackageId>DotNetUtilities.FluentApi</PackageId>
+        <Version>0.0.10--alpha</Version>
+        <Title>DotNetUtilities.FluentApi</Title>
+        <Authors>Ihor Mruchko</Authors>
+        <Description>Provides classes and methods for creting Fluent chains.</Description>
+        <Copyright>Copyright (c) Ihor Mruchko 2025</Copyright>
+        <PackageProjectUrl>https://github.com/IhorMruchko/CommonUtilities</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/IhorMruchko/CommonUtilities</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>Optionals, Monads, Pipelines, Mappers, Tappers</PackageTags>
+        <PackageReleaseNotes>1. Created Fluent API for Pipeline</PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageIcon>link.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <None Include="../Resources/link.png" Pack="true" PackagePath=""/>
+        <None Include="README.md" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+</Project>

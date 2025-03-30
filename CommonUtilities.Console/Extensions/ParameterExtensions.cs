@@ -17,13 +17,13 @@ namespace CommonUtilities.Console.Extensions
         internal static bool IsPositional(this Parameter parameter) => !parameter.IsOptional();
 
         internal static bool IsOptional(this Parameter parameter)
-            => parameter.ParameterReference.IsOptional;
+            => parameter.ParameterReference.IsOptional || parameter.Attributes.Any(attr => attr is OptionalAttribute);
 
         internal static string GetName(this Parameter parameter)
         {
             var optionalAttribute = (OptionalAttribute)parameter.Attributes
                 .FirstOrDefault(attribute => attribute is OptionalAttribute);
-            return optionalAttribute == null
+            return optionalAttribute?.Name == null || optionalAttribute.Symbol == null
                 ? parameter.ParameterReference.Name
                 : optionalAttribute.Name ?? optionalAttribute.Symbol.ToString();
         }

@@ -12,5 +12,7 @@ namespace CommonUtilities.Console.Entities
         public Command[] SubCommands { get; set; }
         
         public Overload[] Overloads { get; set; }
+
+        public HelpAttribute Help { get; set; }
     }
 }

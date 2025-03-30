@@ -30,5 +30,8 @@ namespace CommonUtilities.Console.Extensions
                 command = executableCommand;
             }
         }
+
+        internal static string GetHelp(this Command command)
+            => command.Attribute.Name;
     }
 }

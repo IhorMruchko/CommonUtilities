@@ -12,6 +12,7 @@ namespace CommonUtilities.Console.Extensions
         internal static Command[] ToCommands(this IEnumerable<Type> types, int inheritanceLevel = 0) =>
             types.Where(t  => t.GetCustomAttribute<CommandAttribute>() != null 
                            && (inheritanceLevel > 0 || !t.IsNested))
+                 .Where(t => t.GetCustomAttribute<HideAttribute>() == null)
                  .Select(t => t.ToCommand())
                  .ToArray();
         
@@ -21,7 +22,8 @@ namespace CommonUtilities.Console.Extensions
                 ReferenceType = type,
                 Attribute     = type.GetCustomAttribute<CommandAttribute>(),
                 SubCommands   = type.GetNestedTypes(BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public).ToCommands(inheritanceLevel + 1),
-                Overloads     = type.GetOverloads()
+                Overloads     = type.GetOverloads(),
+                Help          = type.GetCustomAttribute<HelpAttribute>(),
             };
         
         internal static Overload[] GetOverloads(this Type type) =>
@@ -30,10 +32,12 @@ namespace CommonUtilities.Console.Extensions
                              && (t.GetCustomAttribute<OverloadAttribute>() != null 
                              || t.Name.Equals("Execute")
                        ))
+                .Where(t => t.GetCustomAttribute<HideAttribute>() == null)
                 .Select(t => new Overload
                 {
                     OverloadReference = t,
-                    Parameters        = t.GetParams()
+                    Parameters        = t.GetParams(),
+                    Help              = t.GetCustomAttribute<HelpAttribute>()
                 })
                 .ToArray();
     }

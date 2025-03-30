@@ -16,6 +16,7 @@ namespace CommonUtilities.Console.Extensions
                                           .Where(a => a is ParameterAttribute)
                                           .Cast<ParameterAttribute>()
                                           .ToArray(),
+                    Help               = p.GetCustomAttribute<HelpAttribute>()
                 })
                 .ToArray();
     }

@@ -37,6 +37,10 @@ namespace CommonUtilities.Console.Extensions
                    .Select((parameter, index) => arguments[currentArgumentIndex + index].hasValue
                                                  && parameter.CanExecute(arguments[currentArgumentIndex + index].value))
                    .All(t => t)
-               && arguments.Optionals.All(optional => overload.Parameters.Select(p => p.GetName()).Contains(optional));
+               && arguments.Optionals.All(optional => overload.Parameters.Select(p => p.GetName()).Contains(optional))
+               && overload.Parameters.Where(p => p.IsOptional()).Select(p => !arguments[p.GetName()].hasValue 
+                                                                          || arguments[p.GetName()].hasValue
+                                                                          && p.CanExecute(arguments[p.GetName()].value))
+                   .All(t => t);
     }
 }

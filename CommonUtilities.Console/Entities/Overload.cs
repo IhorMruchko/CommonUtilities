@@ -1,4 +1,5 @@
 using System.Reflection;
+using CommonUtilities.Console.Attributes;
 
 namespace CommonUtilities.Console.Entities
 {
@@ -7,5 +8,7 @@ namespace CommonUtilities.Console.Entities
         public MethodInfo OverloadReference { get; set; }
         
         public Parameter[] Parameters { get; set; }
+        
+        public HelpAttribute Help { get; set; }
     }
 }
