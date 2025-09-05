@@ -14,7 +14,7 @@ namespace CommonUtilities.Connection.IOServices
         /// <summary>
         /// Settings on how to store information into the .json file.
         /// </summary>
-        private readonly JsonSerializerSettings _setting = new JsonSerializerSettings()
+        private readonly JsonSerializerSettings _setting = new JsonSerializerSettings
         {
             TypeNameHandling = TypeNameHandling.Auto,
             Formatting = Formatting.Indented

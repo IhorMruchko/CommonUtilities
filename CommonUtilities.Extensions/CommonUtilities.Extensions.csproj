@@ -5,7 +5,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageOutputPath>../../Nugets/CommonUtilities/Extensions</PackageOutputPath>
         <PackageId>DotNetUtilities.Extensions</PackageId>
-        <Version>0.0.2</Version>
+        <Version>0.0.3</Version>
         <Title>DotNetUtilities.Extensions</Title>
         <Authors>Ihor Mruchko</Authors>
         <Description>Provides Extension utilities for different built in types.</Description>

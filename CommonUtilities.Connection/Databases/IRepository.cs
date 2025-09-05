@@ -60,14 +60,14 @@ namespace CommonUtilities.Connection.Databases
         /// Deletes element from the source.
         /// </summary>
         /// <param name="element">Element to remove</param>
-        /// <returns>True - if element is removed;<para/>False - if element does not exists.</returns>
+        /// <returns>True - if element is removed;<para/>False - if element does not exist.</returns>
         bool Remove(TElement element);
 
         /// <summary>
         /// Deletes element from the source and saves the updates.
         /// </summary>
         /// <param name="element">Element to remove</param>
-        /// <returns>True - if element is removed;<para/>False - if element does not exists.</returns>
+        /// <returns>True - if element is removed;<para/>False - if element does not exist.</returns>
         bool RemoveAndSave(TElement element);
         
         /// <summary>

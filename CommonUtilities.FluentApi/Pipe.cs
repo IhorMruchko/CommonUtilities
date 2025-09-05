@@ -20,11 +20,8 @@ namespace CommonUtilities.FluentApi
         /// <param name="value">Current pipeline value.</param>
         /// <returns>Current pipeline.</returns>
         public Pipe<TTarget> Save(out TTarget value)
-        {
-            value = _target;
-            return this;
-        }
-        
+            => MapCore(_ => _target, out value);
+
         /// <summary>
         /// Converts pipeline from object to another one. 
         /// </summary>
@@ -32,18 +29,7 @@ namespace CommonUtilities.FluentApi
         /// <typeparam name="TResult">Resulting type returned from <paramref name="mapper"/>.</typeparam>
         /// <returns>New pipeline with initial object of <typeparamref name="TResult"/>.</returns>
         public Pipe<TResult> Map<TResult>(Func<TTarget, TResult> mapper)
-        {
-            if (_target == null) return new Pipe<TResult>(default);
-
-            try
-            {
-                return new Pipe<TResult>(mapper(_target));
-            }
-            catch
-            {
-                return new Pipe<TResult>(default);
-            }
-        }
+            => MapCore(mapper, out _);
         
         /// <summary>
         /// Converts pipeline from object to another one
@@ -54,21 +40,8 @@ namespace CommonUtilities.FluentApi
         /// <typeparam name="TResult">Resulting type returned from <paramref name="mapper"/>.</typeparam>
         /// <returns>New pipeline with initial object of <typeparamref name="TResult"/>.</returns>
         public Pipe<TResult> Map<TResult>(Func<TTarget, TResult> mapper, out TResult result)
-        {
-            result = default;
-            if (_target == null) return new Pipe<TResult>(result);
+            => MapCore(mapper, out result);
 
-            try
-            {
-                result = mapper(_target);
-                return new Pipe<TResult>(result);
-            }
-            catch
-            {
-                return new Pipe<TResult>(default);
-            }
-        }
-        
         /// <summary>
         /// Evaluates <paramref name="getter"/> and
         /// store that into <paramref name="result"/>
@@ -79,38 +52,15 @@ namespace CommonUtilities.FluentApi
         /// <typeparam name="TResult">Expected result from the <paramref name="getter"/>.</typeparam>
         /// <returns>The same Pipe as was before the call.</returns>
         public Pipe<TTarget> Tap<TResult>(Func<TResult> getter, out TResult result)
-        {
-            result = default;
-            try
-            {
-                result = getter();
-                return this;
-            }
-            catch
-            {
-                return this;
-            }
-        }
+            => MapCore(t => getter(), out result).Map(t => this).Return(this);
 
         /// <summary>
         /// Performs some action basing on current state of the pipe without modification.
         /// </summary>
         /// <param name="action">Action to perform.</param>
         /// <returns>The same pipeline.</returns>
-        public Pipe<TTarget> Tap(Action<TTarget> action)
-        {
-            if (_target == null) return new Pipe<TTarget>(default);
-
-            try
-            {
-                action(_target);
-                return this;
-            }
-            catch
-            {
-                return this;
-            }
-        }
+        public Pipe<TTarget> Tap(Action<TTarget> action) 
+            => MapCore(_ => { action(_target); return _target; }, out _ );
         
         /// <summary>
         /// Performs any action without changing pipeline state.
@@ -118,17 +68,7 @@ namespace CommonUtilities.FluentApi
         /// <param name="action">Action to perform.</param>
         /// <returns>The same pipeline.</returns>
         public Pipe<TTarget> Tap(Action action)
-        {
-            try
-            {
-                action();
-                return this;
-            }
-            catch
-            {
-                return this;
-            }
-        }
+            => MapCore(_ => {  action(); return _target; }, out _ );
 
         /// <summary>
         /// Gets the value of the pipeline.
@@ -139,5 +79,49 @@ namespace CommonUtilities.FluentApi
             => EqualityComparer<TTarget>.Default.Equals(_target, default) 
                 ? @default
                 : _target;
+
+        private Pipe<TResult> MapCore<TResult>(
+            Func<TTarget, TResult> mapper,
+            out TResult result
+        )
+        {
+            result = default;
+            if (_target == null) return new Pipe<TResult>(default);
+            try
+            {
+                result = mapper(_target);
+                return new Pipe<TResult>(result);
+            }
+            catch
+            {
+                // TODO: created Exception handler
+            }
+            
+            return new Pipe<TResult>(default);
+        }
+
+        private Pipe<TResult> WhenCore<TResult>(
+            Func<TTarget, bool> condition,
+            Func<TTarget, TResult> then,
+            Func<TTarget, TResult> @else,
+            TResult @default = default
+        )
+        {
+            if (_target == null) return new Pipe<TResult>(default);
+
+            try
+            {
+                var result = condition(_target)
+                    ? then(_target)
+                    : @else != null
+                        ? @else(_target)
+                        : @default;
+                return new Pipe<TResult>(result);
+            }
+            catch
+            {
+                return new Pipe<TResult>(default);
+            }
+        }
     }
 }

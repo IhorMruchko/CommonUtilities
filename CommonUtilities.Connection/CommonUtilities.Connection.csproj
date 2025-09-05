@@ -4,7 +4,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageOutputPath>../../Nugets/CommonUtilities/Connection</PackageOutputPath>
         <PackageId>DotNetUtilities.Connection</PackageId>
-        <Version>0.0.3</Version>
+        <Version>0.0.4.4-alpha</Version>
         <Title>DotNetUtilities.Connection</Title>
         <Authors>Ihor Mruchko</Authors>
         <Description>Provides IO utilities to connect to the file system and retrieve data from the file</Description>

@@ -16,7 +16,7 @@
         <PackageReleaseNotes>1. Fixed Error with zero arguments request.
 2. Added possibility to convert value to specific format from the attribute, without converter.
         </PackageReleaseNotes>
-        <PackageVersion>0.0.4.8-alpha</PackageVersion>
+        <PackageVersion>0.0.4.9-alpha</PackageVersion>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageIcon>terminal.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>

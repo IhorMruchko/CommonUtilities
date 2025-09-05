@@ -59,24 +59,6 @@ namespace CommonUtilities.Extensions
             
             return result;
         }
-        
-        /// <summary>
-        /// Requests multi line value from the console.
-        /// </summary>
-        /// <param name="message">Request message.</param>
-        /// <returns>Multi-line user input.</returns>
-        public static string AsMultiLineConsoleRequest(this string message)
-        {
-            Console.WriteLine(message);
-            var result = new StringBuilder();
-
-            var userInput = Console.ReadKey();
-
-            while (userInput.Key != ConsoleKey.Enter && userInput.Modifiers != ConsoleModifiers.Shift)
-                result.Append(userInput.KeyChar);
-
-            return result.ToString();
-        }
 
         /// <summary>
         /// Converts user input to int.
@@ -104,24 +86,54 @@ namespace CommonUtilities.Extensions
         /// Returns weather input index was valid one.
         /// </summary>
         /// <param name="source">Elements to display.</param>
-        /// <param name="index">Index user selected</param>
-        /// <param name="selector">Selects how item should be displayed</param>
+        /// <param name="index">Index user selected.</param>
+        /// <param name="selector">Selects how item should be displayed.</param>
         /// <typeparam name="TItem">Type of the collection that is displayed.</typeparam>
         /// <returns>True - if user provides right value between 0 and <paramref name="source"/> length.
         /// <para/>False - otherwise.</returns>
         public static bool AsIndexConsoleRequest<TItem>(
             this IEnumerable<TItem> source, 
             out int index,
-            Func<TItem, string> selector = null)
+            Func<TItem, string> selector = null) 
+        => _asIndexConsoleRequest(source.ToArray(), out index, selector);
+
+        /// <summary>
+        /// Returns if item could be retrieved by index.
+        /// </summary>
+        /// <param name="source">Elements to display.</param>
+        /// <param name="item">Item user selected.</param>
+        /// <param name="selector">Selects how item should be displayed.</param>
+        /// <typeparam name="TItem">Type of the collection that is displayed.</typeparam>
+        /// <returns>True - if user provides right value between 0 and <paramref name="source"/> length.
+        /// <para/>False - otherwise.</returns>
+        public static bool AsIndexConsoleRequest<TItem>(
+            this IEnumerable<TItem> source,
+            out TItem item,
+            Func<TItem, string> selector = null
+        )
         {
-            source = source.ToArray();
-            index = string.Join(
-                    "\n", 
-                    source.Select((item, i) => $"{i + 1}. {selector?.Invoke(item) ?? item.ToString()}")
-                )
-                .AsIntConsoleRequest() - 1;
+            item = default;
+            var array = source.ToArray();
+            var result = _asIndexConsoleRequest(array, out var index, selector);
             
-            return index >= 0 && index < source.Count();
+            if (result)
+            {
+                item = array[index];
+            }
+           
+            return result;
+        }
+
+        private static bool _asIndexConsoleRequest<TItem>(
+            TItem[] source,
+            out int index,
+            Func<TItem, string> selector = null
+        ) {
+            index = string.Join("\n", 
+                    source.Select((item, i) => $"{i + 1}. {selector?.Invoke(item) ?? item.ToString()}")
+                ).AsIntConsoleRequest() - 1;
+            
+            return index >= 0 && index < source.Length;  
         }
     }
 }
